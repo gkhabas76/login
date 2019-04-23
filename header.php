@@ -1,5 +1,8 @@
 <?php
 	session_start();
+
+	require 'csrf.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +28,7 @@
     	if(isset($_GET['error'])){
 
     		if($_GET['error'] == "wrongpwd"){
-    			
-                    echo '<script type = "text/javascript"> alert("Wrong Password"); </script>';
+                echo '<script type = "text/javascript"> alert("Wrong Password"); </script>';
                 }
             else if($_GET['error'] == 'nouser'){
             	echo '<script type = "text/javascript"> alert("Username does not match"); </script>';
@@ -39,9 +41,13 @@
     				</form>';
 		}
 		else {
+
 				echo '<form class="form-inline my-2 my-lg-0" action="includes/login.inc.php" method="post">
       					<input class="form-control mr-sm-2" type="text" name="mailuid" placeholder="Username/Email">
       					<input class="form-control mr-sm-2" type="password" name="pwd" placeholder="Password">
+      					<input type="hidden" name="token" value="'.$token.'" >
+
+
       					<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="login-submit">Login</button>
     					</form>
     				<div class="form-inline signup">
@@ -52,6 +58,7 @@
     
     
   </div>
+  
 </nav>
 </body>
 </html>

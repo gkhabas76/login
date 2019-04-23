@@ -1,5 +1,6 @@
 <?php
 	require "header.php";
+    require 'csrf.php';
 ?>
 
 <div class="signup-form">
@@ -45,7 +46,7 @@
 		<div class="form-group">
             <input type="password" class="form-control" name="confirm-pwd" placeholder="Confirm Password">
         </div>        
-        
+        <input type="hidden" name="token" value="<?php echo $token; ?>" >
 		<div class="form-group">
             <button type="submit" class="btn btn-success btn-lg btn-block" name="signup-submit">Signup</button>
         </div>
